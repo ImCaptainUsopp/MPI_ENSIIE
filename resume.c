@@ -60,6 +60,15 @@ int main(int argc, char **argv) {
     }
 
 
+  /**************************/
+  /*Distribution de 1/mpisze de l'image à chaque processus
+  /**************************/
+  MPI_Scatter(
+      src.buf, dst.sz_in_bytes, MPI_BYTE, // pointeur tab origine, taille élément envoyer, type d'élement
+      dst.buf, dst.sz_in_bytes, MPI_BYTE, // pointeur vers endroit de stockage, nb d'élément
+      /*root=*/0, MPI_COMM_WORLD
+      );
+
 
     MPI_Finalize();
 
